@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philips Datei-Uploader</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+        <h1>Anonymer Datei-Uploader</h1>
+        <p class="subtitle">
+            Datei hochladen, Link teilen. Kein Konto, keine Namen – der Link läuft
+            automatisch ab.
+        </p>
+
+        <div id="dropzone" class="dropzone">
+            <p id="dropzone-text">Datei hierher ziehen oder klicken zum Auswählen</p>
+            <input type="file" id="fileInput" hidden>
+        </div>
+
+        <div id="fileInfo" class="file-info hidden">
+            <span id="fileName"></span>
+            <span id="fileSize"></span>
+        </div>
+
+        <div class="expiry-row">
+            <label for="expirySelect">Link läuft ab nach:</label>
+            <select id="expirySelect">
+                <option value="1">1 Tag</option>
+                <option value="7" selected>7 Tagen</option>
+                <option value="30">30 Tagen</option>
+            </select>
+        </div>
+
+        <button id="uploadButton" disabled>Hochladen</button>
+
+        <div id="progressContainer" class="progress-container hidden">
+            <div id="progressBar" class="progress-bar"></div>
+            <span id="progressLabel">0%</span>
+        </div>
+
+        <div id="result" class="result hidden">
+            <p>Dein Link zum Teilen:</p>
+            <div class="shortlink-container">
+                <input id="shareUrl" type="text" readonly>
+                <button id="copyButton">Kopieren</button>
+            </div>
+            <p class="expiry-note" id="expiryNote"></p>
+        </div>
+
+        <p id="message"></p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
