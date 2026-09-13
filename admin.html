@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datei-Uploader – Verwaltung</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <main class="container admin-container">
+        <h1>Datei-Verwaltung</h1>
+
+        <div id="loginGate" class="login-gate">
+            <p>Bitte gib den Admin-Schlüssel ein:</p>
+            <input type="password" id="adminKeyInput" placeholder="Admin-Schlüssel">
+            <button id="loginButton">Einloggen</button>
+            <p id="loginError" class="error-text"></p>
+        </div>
+
+        <div id="adminContent" class="hidden">
+            <div class="usage-meter">
+                <div class="usage-bar-track">
+                    <div id="usageBar" class="usage-bar-fill"></div>
+                </div>
+                <p id="usageLabel" class="usage-label">Lädt…</p>
+            </div>
+
+            <button id="refreshButton" class="secondary-button" type="button">Aktualisieren</button>
+
+            <table class="file-table">
+                <thead>
+                    <tr>
+                        <th>Datei</th>
+                        <th>Größe</th>
+                        <th>Läuft ab</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="fileTableBody"></tbody>
+            </table>
+            <p id="emptyState" class="empty-state hidden">Keine Dateien gespeichert.</p>
+        </div>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>
