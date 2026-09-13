@@ -83,3 +83,7 @@
     color: #71717a;
     padding: 20px 0;
 }
+
+.back-link::before {
+    content: "←";
+}
