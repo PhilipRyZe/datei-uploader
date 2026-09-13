@@ -33,12 +33,11 @@
         </div>
 
         <div class="expiry-row">
-            <label for="expirySelect">Link läuft ab nach:</label>
-            <select id="expirySelect">
-                <option value="1">1 Tag</option>
-                <option value="7" selected>7 Tagen</option>
-                <option value="30">30 Tagen</option>
-            </select>
+            <label>Link läuft ab nach:</label>
+            <div class="expiry-toggle" role="group" aria-label="Ablaufzeit wählen">
+                <button type="button" class="expiry-btn" data-days="1">1 Tag</button>
+                <button type="button" class="expiry-btn active" data-days="7">7 Tage</button>
+            </div>
         </div>
 
         <button id="uploadButton" disabled>Hochladen</button>
@@ -58,6 +57,8 @@
         </div>
 
         <p id="message"></p>
+
+        <a href="admin.html" class="admin-link">Verwaltung öffnen</a>
     </main>
 
     <script src="script.js"></script>

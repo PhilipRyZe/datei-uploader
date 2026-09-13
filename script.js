@@ -9,7 +9,16 @@ const fileInput = document.getElementById("fileInput");
 const fileInfo = document.getElementById("fileInfo");
 const fileNameEl = document.getElementById("fileName");
 const fileSizeEl = document.getElementById("fileSize");
-const expirySelect = document.getElementById("expirySelect");
+const expiryButtons = document.querySelectorAll(".expiry-btn");
+let selectedExpiryDays = 7; // Standard, passend zum vorausgewählten Button
+
+expiryButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        expiryButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedExpiryDays = parseInt(btn.dataset.days, 10);
+    });
+});
 const uploadButton = document.getElementById("uploadButton");
 const progressContainer = document.getElementById("progressContainer");
 const progressBar = document.getElementById("progressBar");
@@ -211,7 +220,7 @@ uploadButton.addEventListener("click", async () => {
     progressContainer.classList.remove("hidden");
     updateProgress(0);
 
-    const expiryDays = parseInt(expirySelect.value, 10);
+    const expiryDays = selectedExpiryDays;
 
     try {
         const code = await uploadFile(selectedFile, expiryDays);

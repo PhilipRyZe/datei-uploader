@@ -104,11 +104,52 @@ h1 {
     font-size: 14px;
 }
 
-.expiry-row select {
-    padding: 6px 10px;
-    border-radius: 6px;
+.expiry-toggle {
+    display: flex;
+    gap: 8px;
+}
+
+.expiry-btn {
+    width: auto;
+    margin-top: 0;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    background: #f4f4f5;
+    color: #52525b;
     border: 1px solid #d4d4d8;
-    font-size: 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.expiry-btn:hover:not(:disabled) {
+    opacity: 1;
+    background: #e4e4e7;
+}
+
+.expiry-btn.active {
+    background: #18181b;
+    color: #fff;
+    border-color: #18181b;
+}
+
+.expiry-btn.active:hover {
+    background: #18181b;
+}
+
+.admin-link {
+    display: block;
+    margin-top: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: #a1a1aa;
+    text-decoration: none;
+}
+
+.admin-link:hover {
+    color: #52525b;
+    text-decoration: underline;
 }
 
 button {
