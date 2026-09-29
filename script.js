@@ -10,13 +10,13 @@ const fileInfo = document.getElementById("fileInfo");
 const fileNameEl = document.getElementById("fileName");
 const fileSizeEl = document.getElementById("fileSize");
 const expiryButtons = document.querySelectorAll(".expiry-btn");
-let selectedExpiryDays = 7; // Standard, passend zum vorausgewählten Button
+let selectedExpiryHours = 24; // Standard, passend zum vorausgewählten Button
 
 expiryButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
         expiryButtons.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-        selectedExpiryDays = parseInt(btn.dataset.days, 10);
+        selectedExpiryHours = parseInt(btn.dataset.hours, 10);
     });
 });
 const uploadButton = document.getElementById("uploadButton");
@@ -139,7 +139,7 @@ function uploadPart(key, uploadId, partNumber, chunk, onProgress) {
     });
 }
 
-async function uploadFile(file, expiryDays) {
+async function uploadFile(file, expiryHours) {
     // 1) Upload initialisieren
     const initRes = await fetch(`${API_BASE}/api/upload/init`, {
         method: "POST",
@@ -148,7 +148,7 @@ async function uploadFile(file, expiryDays) {
             filename: file.name,
             contentType: file.type || "application/octet-stream",
             size: file.size,
-            expiryDays,
+            expiryHours,
         }),
     });
 
@@ -220,15 +220,15 @@ uploadButton.addEventListener("click", async () => {
     progressContainer.classList.remove("hidden");
     updateProgress(0);
 
-    const expiryDays = selectedExpiryDays;
+    const expiryHours = selectedExpiryHours;
 
     try {
-        const code = await uploadFile(selectedFile, expiryDays);
+        const code = await uploadFile(selectedFile, expiryHours);
         const shareUrl = `${API_BASE}/download/${code}`;
 
         shareUrlInput.value = shareUrl;
         result.classList.remove("hidden");
-        expiryNote.textContent = `Der Link läuft in ${expiryDays} Tag${expiryDays === 1 ? "" : "en"} automatisch ab.`;
+        expiryNote.textContent = `Der Link läuft in ${expiryHours} Stunden automatisch ab.`;
         progressContainer.classList.add("hidden");
     } catch (err) {
         message.textContent = `Fehler: ${err.message || "Upload fehlgeschlagen"}`;
